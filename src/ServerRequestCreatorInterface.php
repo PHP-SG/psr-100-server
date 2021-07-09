@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Nyholm\Psr7Server;
+namespace Psg\Psr100Server;
 
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\StreamInterface;
+use Psg\Http\Message\ServerRequestInterface;
+use Psg\Http\Message\StreamInterface;
 
 /**
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>

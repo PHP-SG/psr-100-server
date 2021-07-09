@@ -2,16 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Nyholm\Psr7Server;
+namespace Psg\Psr100Server;
 
-use Psr\Http\Message\ServerRequestFactoryInterface;
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\StreamInterface;
-use Psr\Http\Message\UploadedFileFactoryInterface;
-use Psr\Http\Message\UploadedFileInterface;
-use Psr\Http\Message\UriFactoryInterface;
-use Psr\Http\Message\UriInterface;
+
+use Psg\Http\Message\{ServerRequestFactoryInterface, ServerRequestInterface, StreamFactoryInterface, StreamInterface, UploadedFileFactoryInterface, UploadedFileInterface, UriFactoryInterface, UriInterface};
 
 /**
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>

@@ -1,32 +1,27 @@
 {
-    "name": "nyholm/psr7-server",
-    "description": "Helper classes to handle PSR-7 server requests",
+    "name": "psg/psr-100-server",
+    "description": "Helper classes to handle PSR-100 server requests",
     "license": "MIT",
-    "keywords": ["psr-7", "psr-17"],
+    "keywords": ["psr-7", "psr-17", "psr-100"],
     "homepage": "http://tnyholm.se",
     "authors": [
         {
-            "name": "Tobias Nyholm",
-            "email": "tobias.nyholm@gmail.com"
-        },
-        {
-            "name": "Martijn van der Ven",
-            "email": "martijn@vanderven.se"
+            "name": "PHP-SG",
+            "homepage": "http://php-sg.org/"
         }
     ],
     "require": {
         "php": "^7.1 || ^8.0",
-        "psr/http-message": "^1.0",
-        "psr/http-factory": "^1.0"
+        "psg/psr-100": "^0.1.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.0 || ^8.5 || ^9.3",
-        "nyholm/psr7": "^1.3",
-        "nyholm/nsa": "^1.1"
+        "nyholm/nsa": "^1.1",
+        "psg/psr-100-implementation": "^0.1.0"
     },
     "autoload": {
         "psr-4": {
-            "Nyholm\\Psr7Server\\": "src/"
+            "Psg\\Psr100Server\\": "src/"
         }
     },
     "autoload-dev": {

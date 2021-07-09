@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Tests\Nyholm\Psr7Server;
+namespace Tests\Psg\Psr100Server;
 
 use Nyholm\NSA;
-use Nyholm\Psr7\UploadedFile;
-use Nyholm\Psr7\Uri;
-use Nyholm\Psr7Server\ServerRequestCreator;
+use Psg\Psr100\UploadedFile;
+use Psg\Psr100\Uri;
+use Psg\Psr100Server\ServerRequestCreator;
 use PHPUnit\Framework\TestCase;
-use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\UploadedFileInterface;
+use Psg\Http\Message\StreamFactoryInterface;
+use Psg\Http\Message\UploadedFileInterface;
 
 class ServerRequestCreatorTest extends TestCase
 {
@@ -42,7 +42,7 @@ class ServerRequestCreatorTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $psr17Factory = new \Nyholm\Psr7\Factory\Psr17Factory();
+        $psr17Factory = new \Psg\Psr100\Factory\Psr100Factory();
 
         $this->creator = new ServerRequestCreator(
             $psr17Factory,
@@ -63,7 +63,7 @@ class ServerRequestCreatorTest extends TestCase
                         'name' => 'MyFile.txt',
                         'type' => 'text/plain',
                         'tmp_name' => self::$filenames[0],
-                        'error' => '0',
+                        'error' => UPLOAD_ERR_OK,
                         'size' => '123',
                     ],
                 ],
@@ -141,14 +141,14 @@ class ServerRequestCreatorTest extends TestCase
                         'name' => 'MyFile.txt',
                         'type' => 'text/plain',
                         'tmp_name' => self::$filenames[3],
-                        'error' => '0',
+                        'error' => UPLOAD_ERR_OK,
                         'size' => '123',
                     ],
                     'image_file' => [
                         'name' => '',
                         'type' => '',
                         'tmp_name' => self::$filenames[4],
-                        'error' => '4',
+                        'error' => UPLOAD_ERR_NO_FILE,
                         'size' => '0',
                     ],
                 ],
@@ -185,8 +185,8 @@ class ServerRequestCreatorTest extends TestCase
                             1 => self::$filenames[6],
                         ],
                         'error' => [
-                            0 => '0',
-                            1 => '0',
+                            0 => UPLOAD_ERR_OK,
+                            1 => UPLOAD_ERR_OK,
                         ],
                         'size' => [
                             0 => '123',
@@ -216,10 +216,10 @@ class ServerRequestCreatorTest extends TestCase
                             ],
                         ],
                         'error' => [
-                            'other' => '0',
+                            'other' => UPLOAD_ERR_OK,
                             'test' => [
-                                0 => '0',
-                                1 => '4',
+                                0 => UPLOAD_ERR_OK,
+                                1 => UPLOAD_ERR_NO_FILE,
                             ],
                         ],
                         'size' => [
@@ -562,7 +562,7 @@ class ServerRequestCreatorTest extends TestCase
      */
     public function testFailingStreamFromFile()
     {
-        $psr17Factory = new \Nyholm\Psr7\Factory\Psr17Factory();
+        $psr17Factory = new \Psg\Psr100\Factory\Psr100Factory();
         $psr17StreamFactory = $this->createMock(StreamFactoryInterface::class);
         $psr17StreamFactory->method('createStreamFromFile')
             ->will($this->throwException(new \RuntimeException()));
